@@ -35,6 +35,8 @@ Forum Discussion: http://codea.io/talk/discussion/6847/soda-gorgeous-and-powerfu
 
 ### Simple but powerful parent-child relationship between interface elements
 
++ Dynamic coordinate system supports using pixels and/or proportions to define sizes and locations, and can even use both in a single coordinate. 
+
 + Positions and dimensions of elements are defined relative to the parent of the element (ie the frame or window that they are in). Positions can be defined relative to any edge of the enclosing frame, or as a proportion of the parent frame. Decide a window is too cluttered? No need to move all of the elements around, just resize the parent window.
 
 + Elements automatically and intelligently resize when device orientation changes
@@ -223,6 +225,8 @@ NB for performance reasons, currently the blurred panels do not have live updati
 ### Interface elements
 
 Add interface elements to your code with constructors consisting of a Soda element and a table of arguments. All Soda elements take a single table of parameters as an argument. In Lua, if a function takes a single table or a single string as its argument, then the `()` brackets that usually enclose the arguments can be omitted. So, `Soda.Button{title = "Press Me"}` is the same as `Soda.Button({title = "Press Me"})`, but with less typing. Keys can be supplied in any order, and very few are compulsory (Soda will supply defaults for certain missing values).
+
+In defining sizes and locations, Soda supports both relative proportions and pixel-precise specifications, and can even use both in one coordinate. Any whole number is automatically treated as a pixel-precise specification, and any number expressed in decimals is treated as a proportion. For example, x/y coordinates expressed as `200, 0.5` define a location offset from its parent by 200 pixels horizontally and by half the parent's height vertically. The exact way this works is defined in the Attributes section. [Note: while powerful, this system requires the coder to ensure that decimals are not used where whole numbers are intended and vice-versa.]  
 
 Soda will automatically record each UI element you create. Therefore Soda constructors are "fire and forget". Soda does this in order to ensure the correct order of drawing and touching (so that, for example, you cannot touch a button hidden beneath a pop-up dialog window). You will ony need to define local handles for UI elements if you need to refer to that element, usually in either a callback, or to make that element the parent of others (see /tabs/Demo for examples).
 
